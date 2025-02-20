@@ -1,3 +1,4 @@
+# 1.
 def merge(arr, low, mid, high):
     temp_array = []
     low_index = low
