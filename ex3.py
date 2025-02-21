@@ -65,6 +65,6 @@ def results():
         comparisons, swaps = bubble_sort(random_array)
         comparison_counts.append(comparisons)
         swap_counts.append(swaps)
-    plot(x_values, comparison_counts, swap_counts)
+    #plot(x_values, comparison_counts, swap_counts)
 
 results()
