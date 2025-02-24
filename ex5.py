@@ -64,24 +64,23 @@ def plot(x, y1, y2):
 
 
 def test():
-    unsorted = [random.randint(1, 100) for x in range(1, 20)]
+    unsorted = [random.randint(1, 100) for x in range(1, 500)]
     x_values = [x for x in range(1, len(unsorted) + 1)]
     is_times = []
     bis_times = []
+    repetitions = 20
     for i in range(0, len(unsorted)):
-        is_time = timeit.timeit(lambda: insertion_sort(unsorted[0:i]))
-        #print(f"is: {is_time}")
-        is_times.append(is_time)
-        bis_time = timeit.timeit(lambda: binary_insertion_sort(unsorted[0:i]))
-        #print(f"bis: {bis_time}")
-        bis_times.append(bis_time)
+        is_time = timeit.timeit(lambda: insertion_sort(unsorted[0:i]), number=repetitions)
+        is_times.append(is_time/repetitions)
+        bis_time = timeit.timeit(lambda: binary_insertion_sort(unsorted[0:i]), number=repetitions)
+        bis_times.append(bis_time/repetitions)
     plot(x_values, is_times, bis_times)
 
 test()
 
 # 4. Which algorithm is faster? Why?
-# In this case, insertion sort was faster than binary insertion sort.
+# In this case, insertion sort was faster than binary insertion sort up until an input size of around 200.
 # The reason for this is because there is a lot more setup involved in binary insertion sort
 # than insertion sort, which is not worth the runtime cost for smaller arrays. The binary search
 # does not justify its existance when the array is sufficiently small that linear search
-# still works very well.
+# still works very well. After the 200 input size mark, the additional setup starts to become more worthwhile.

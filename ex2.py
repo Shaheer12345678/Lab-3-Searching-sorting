@@ -46,8 +46,8 @@ def worst_case(x_values):
     for i in range(1, 21, 1):
         worst_case_bubble = np.flip(np.arange(i))
         worst_case_quick = np.copy(worst_case_bubble)
-        bubble_times.append(timeit.timeit(lambda: bubble_sort(worst_case_bubble)))
-        quick_times.append(timeit.timeit(lambda: quicksort(worst_case_quick, 0, len(worst_case_quick) - 1)))
+        bubble_times.append(timeit.timeit(lambda: bubble_sort(worst_case_bubble), number=1))
+        quick_times.append(timeit.timeit(lambda: quicksort(worst_case_quick, 0, len(worst_case_quick) - 1), number=1))
     plt.figure(0)
     plt.title("Worst case quick sort vs bubble sort")
     plt.scatter(x_values, bubble_times, color='blue', label='Bubble sort')
@@ -61,8 +61,8 @@ def average_case(x_values):
     for i in range(1, 21, 1):
         average_case_both = np.random.randint(0, i, size=i)
         copy = np.copy(average_case_both)
-        bubble_times.append(timeit.timeit(lambda: bubble_sort(average_case_both)))
-        quick_times.append(timeit.timeit(lambda: quicksort(copy, 0, len(copy) - 1)))
+        bubble_times.append(timeit.timeit(lambda: bubble_sort(average_case_both), number=1))
+        quick_times.append(timeit.timeit(lambda: quicksort(copy, 0, len(copy) - 1), number=1))
     plt.figure(1)
     plt.title("Average case quick sort vs bubble sort")
     plt.scatter(x_values, bubble_times, color='blue', label='Bubble sort')
@@ -76,8 +76,8 @@ def best_case(x_values):
     for i in range(1, 21, 1):
         best_case_bubble = np.arange(i)
         best_case_quick = np.random.randint(0, i, size=i) # Creates roughly equal partitions due to randomness
-        bubble_times.append(timeit.timeit(lambda: bubble_sort(best_case_bubble)))
-        quick_times.append(timeit.timeit(lambda: quicksort(best_case_quick, 0, len(best_case_quick) - 1)))
+        bubble_times.append(timeit.timeit(lambda: bubble_sort(best_case_bubble), number=1))
+        quick_times.append(timeit.timeit(lambda: quicksort(best_case_quick, 0, len(best_case_quick) - 1), number=1))
     plt.figure(2)
     plt.title("Best case quick sort vs bubble sort")
     plt.scatter(x_values, bubble_times, color='blue', label='Bubble sort')
@@ -88,8 +88,8 @@ def best_case(x_values):
 def main():
     x_values = np.arange(1, 21, 1)
     worst_case(x_values)
-    #average_case(x_values)
-    #best_case(x_values)
+    average_case(x_values)
+    best_case(x_values)
 
 main()
 

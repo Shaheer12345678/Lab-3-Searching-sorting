@@ -49,10 +49,9 @@ def increasing_worst_case(repetitions):
     x_values = [x for x in range(1, repetitions, 1)]
     times = []
 
-    for i in range(1, 21):
+    for i in range(1, 101):
         worst_case_array = [x for x in range(i)]
-        #print(worst_case_array)
-        times.append(timeit.timeit(lambda: quicksort(worst_case_array, 0, i - 1)))
+        times.append(timeit.timeit(lambda: quicksort(worst_case_array, 0, i - 1), number=100)/100)
     plot(x_values, times)
 
-increasing_worst_case(21)
+increasing_worst_case(101)
